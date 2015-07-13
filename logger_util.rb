@@ -9,8 +9,6 @@ module LoggerUtil
   LOG = LOG_FILE_PATH + 'my_log'
   FileUtils.mkdir_p LOG_FILE_PATH
 
-  attr_accessor(:logger)
-
   def self.init_logger
     @logger = Logger.new("#{LOG}") unless @logger
   end
@@ -26,7 +24,7 @@ module LoggerUtil
   end
 
   def self.print_log
-    puts '#' * 30 + ' LOG START ' + '#' * 30
+    puts ['#' * 30, ' LOG START ', '#' * 30].join
     File.open(LOG).each do |l|
       severity = l[0]
       case severity
@@ -42,6 +40,6 @@ module LoggerUtil
         print l.green
       end
     end
-    puts '#' * 30 + ' LOG END ' + '#' * 30
+    puts ['#' * 30, ' LOG END ', '#' * 30].join
   end
 end
